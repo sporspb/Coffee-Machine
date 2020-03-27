@@ -10,7 +10,6 @@ class TestClue {
     boolean cond;
     int num;
     boolean showTests;
-
     TestClue(boolean c, int n, boolean showTests) {
         cond = c;
         num = n;

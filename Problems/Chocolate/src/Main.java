@@ -3,12 +3,11 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int x1 = scanner.nextInt();
-        int y1 = scanner.nextInt();
-        int x2 = scanner.nextInt();
-        int y2 = scanner.nextInt();
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int k = scanner.nextInt();
 
-        if (x1 == x2 || y1 == y2 || Math.abs(x1 - x2) == Math.abs(y1 - y2)) {
+        if (k <= m * n && (k % n == 0 || k % m == 0)) {
             System.out.println("YES");
         } else {
             System.out.println("NO");
