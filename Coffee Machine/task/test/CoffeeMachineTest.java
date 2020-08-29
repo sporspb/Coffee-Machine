@@ -1,7 +1,7 @@
 import machine.CoffeeMachine;
-import org.hyperskill.hstest.v6.stage.BaseStageTest;
-import org.hyperskill.hstest.v6.testcase.CheckResult;
-import org.hyperskill.hstest.v6.testcase.TestCase;
+import org.hyperskill.hstest.stage.StageTest;
+import org.hyperskill.hstest.testcase.CheckResult;
+import org.hyperskill.hstest.testcase.TestCase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ class TestClue {
     }
 }
 
-public class CoffeeMachineTest extends BaseStageTest<TestClue> {
+public class CoffeeMachineTest extends StageTest<TestClue> {
 
     public CoffeeMachineTest() {
         super(CoffeeMachine.class);
@@ -50,7 +50,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
         String[] lines = reply.trim().split("\\n");
 
         if (lines.length <= 1) {
-            return CheckResult.FALSE;
+            return CheckResult.wrong("");
         }
 
         String[] clueLines = clue.string.trim().split("\\n");
@@ -138,7 +138,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
         int money0 = money.get(0);
         int money1 = money.get(money.size() - 1);
 
-        if (water0 != 1200 || milk0 != 540 || beans0 != 120
+        if (water0 != 400 || milk0 != 540 || beans0 != 120
             || cups0 != 9 || money0 != 550) {
             return new CheckResult(false,
                 "Initial setup is wrong: " +
@@ -184,7 +184,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
                         "amount should be zero");
             }
 
-            return CheckResult.TRUE;
+            return CheckResult.correct();
         }
 
         else if (action.equals("buy")) {
@@ -223,7 +223,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
                             "money amount should be increased by 4");
                 }
 
-                return CheckResult.TRUE;
+                return CheckResult.correct();
 
             }
 
@@ -259,7 +259,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
                             "money amount should be increased by 7");
                 }
 
-                return CheckResult.TRUE;
+                return CheckResult.correct();
             }
 
             else if (option.equals("3")) {
@@ -294,7 +294,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
                             "money amount should be increased by 7");
                 }
 
-                return CheckResult.TRUE;
+                return CheckResult.correct();
             }
         }
 
@@ -340,7 +340,7 @@ public class CoffeeMachineTest extends BaseStageTest<TestClue> {
             }
 
 
-            return CheckResult.TRUE;
+            return CheckResult.correct();
 
         }
 
