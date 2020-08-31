@@ -23,17 +23,17 @@ public class CoffeeMachineTest extends StageTest<TestClue> {
     @Override
     public List<TestCase<TestClue>> generate() {
         return List.of(
-                new TestCase<TestClue>()
-                        .setAttach(new TestClue("take\n"))
-                        .setInput("take\n"),
+            new TestCase<TestClue>()
+                .setAttach(new TestClue("take\n"))
+                .setInput("take\n"),
 
-                new TestCase<TestClue>()
-                        .setAttach(new TestClue("buy\n1\n"))
-                        .setInput("buy\n1\n"),
+            new TestCase<TestClue>()
+                .setAttach(new TestClue("buy\n1\n"))
+                .setInput("buy\n1\n"),
 
-                new TestCase<TestClue>()
-                        .setAttach(new TestClue("buy\n2\n"))
-                        .setInput("buy\n2\n"),
+            new TestCase<TestClue>()
+                .setAttach(new TestClue("buy\n2\n"))
+                .setInput("buy\n2\n"),
 
             new TestCase<TestClue>()
                 .setAttach(new TestClue("buy\n3\n"))
@@ -139,11 +139,11 @@ public class CoffeeMachineTest extends StageTest<TestClue> {
         int money1 = money.get(money.size() - 1);
 
         if (water0 != 400 || milk0 != 540 || beans0 != 120
-                || cups0 != 9 || money0 != 550) {
+            || cups0 != 9 || money0 != 550) {
             return new CheckResult(false,
-                    "Initial setup is wrong: " +
-                            "coffee machine should fe filled like " +
-                            "stated in the description");
+                "Initial setup is wrong: " +
+                    "coffee machine should fe filled like " +
+                    "stated in the description");
         }
 
         int diffWater = water1 - water0;
