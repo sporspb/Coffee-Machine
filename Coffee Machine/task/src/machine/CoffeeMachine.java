@@ -8,6 +8,7 @@ public class CoffeeMachine {
     static int coffeeRemain = 120;
     static int cupCount = 9;
     static int moneyRemain = 550;
+    static boolean exit = false;
 
     public static void main(String[] args) {
 
@@ -16,56 +17,66 @@ public class CoffeeMachine {
         Drink latte = new Drink(350, 75, 20, 7);
         Drink cappuccino = new Drink(200, 100, 12, 6);
 
-        stateOutput();
-        System.out.println();
-        System.out.println("Write action (buy, fill, take): ");
-        System.out.print("> ");
-        String command = scanner.nextLine();
+        while (!exit) {
+            welcomeMessage();
+            String command = scanner.nextLine();
 
-        switch (command) {
-            case "buy":
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
-                System.out.print("> ");
-                int drinkNumber = scanner.nextInt();
-                switch (drinkNumber) {
-                    case 1:
-                        drinkOutput(espresso);
-                        break;
-                    case 2:
-                        drinkOutput(latte);
-                        break;
-                    case 3:
-                        drinkOutput(cappuccino);
-                        break;
-                    default:
-                        System.out.println("wrong command");
-                }
-                break;
-            case "fill":
-                System.out.println("Write how many ml of water do you want to add:");
-                System.out.print("> ");
-                waterRemain += scanner.nextInt();
-                System.out.println("Write how many ml of milk do you want to add: ");
-                System.out.print("> ");
-                milkRemain += scanner.nextInt();
-                System.out.println("Write how many grams of coffee beans do you want to add: ");
-                System.out.print("> ");
-                coffeeRemain += scanner.nextInt();
-                System.out.println("Write how many disposable cups of coffee do you want to add: ");
-                System.out.print("> ");
-                cupCount += scanner.nextInt();
-                stateOutput();
-                System.out.println();
-                break;
-            case "take":
-                System.out.println("I gave you $" + moneyRemain);
-                System.out.println();
-                moneyRemain = 0;
-                stateOutput();
-                break;
-            default:
-                System.out.println("wrong command");
+            switch (command) {
+                case "buy":
+                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
+                    System.out.print("> ");
+                    String drinkNumber = scanner.nextLine();
+                    switch (drinkNumber) {
+                        case "1":
+                            buyDrink(espresso);
+                            break;
+                        case "2":
+                            buyDrink(latte);
+                            break;
+                        case "3":
+                            buyDrink(cappuccino);
+                            break;
+                        case "back":
+                            break;
+                        default:
+                            System.out.println("wrong command");
+                    }
+                    break;
+                case "fill":
+                    System.out.println("Write how many ml of water do you want to add:");
+                    System.out.print("> ");
+                    waterRemain += scanner.nextInt();
+                    System.out.println("Write how many ml of milk do you want to add: ");
+                    System.out.print("> ");
+                    milkRemain += scanner.nextInt();
+                    System.out.println("Write how many grams of coffee beans do you want to add: ");
+                    System.out.print("> ");
+                    coffeeRemain += scanner.nextInt();
+                    System.out.println("Write how many disposable cups of coffee do you want to add: ");
+                    System.out.print("> ");
+                    cupCount += scanner.nextInt();
+                    break;
+                case "take":
+                    System.out.println("I gave you $" + moneyRemain);
+                    System.out.println();
+                    moneyRemain = 0;
+                    break;
+                case "remaining":
+                    stateOutput();
+                    break;
+                case "exit":
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("wrong command");
+            }
         }
+    }
+
+    private static void welcomeMessage() {
+        System.out.println();
+        System.out.println("Write action (buy, fill, take, remaining, exit): ");
+        System.out.print("> ");
     }
 
     private static void stateOutput() {
@@ -74,16 +85,23 @@ public class CoffeeMachine {
         System.out.println(milkRemain + " of milk");
         System.out.println(coffeeRemain + " of coffee beans:");
         System.out.println(cupCount + " of disposable cups");
-        System.out.println(moneyRemain + " of money");
+        System.out.println("$" + moneyRemain + " of money");
     }
 
-    private static void drinkOutput(Drink drink) {
-        waterRemain -= drink.waterPerCup;
-        milkRemain -= drink.milkPerCup;
-        coffeeRemain -= drink.coffeePerCup;
-        cupCount--;
-        moneyRemain += drink.costPerCup;
-        stateOutput();
+    private static void buyDrink(Drink drink) {
+        if (checkRes(drink)) {
+            System.out.println("I have enough resources, making you a coffee!");
+        } else {
+            waterRemain -= drink.waterPerCup;
+            milkRemain -= drink.milkPerCup;
+            coffeeRemain -= drink.coffeePerCup;
+            cupCount--;
+            moneyRemain += drink.costPerCup;
+        }
+    }
+
+    private static boolean checkRes(Drink drink) {
+        return (waterRemain < drink.waterPerCup) || (milkRemain < drink.milkPerCup) || (coffeeRemain < drink.coffeePerCup) || (cupCount <= 0);
     }
 }
 
