@@ -1,5 +1,5 @@
 content:
-- The count of numbers divisible by N
+  - The count of numbers divisible by N
 - Symmetrical number
 - Harry Potter
 - Direction
@@ -25,12 +25,20 @@ content:
 - Books
 - Inner boxes
 - Initializing an array of characters
-- Initializing an array of integers
-- Sum array elements greater than a value
-- Boxes
-- The longest ascending sequence
-- Account
-- Complex numbers
-- Account and its owner
-- Army
-- Preparing full name
+  - Initializing an array of integers
+  - Sum array elements greater than a value
+  - Boxes
+  - The longest ascending sequence
+  - Account
+  - Complex numbers
+  - Account and its owner
+  - Army
+  - Preparing full name
+  - In a box
+  - Car
+  - Simulating a clock
+  - Project constants and methods
+  - Too many cats
+  - Currencies
+  - Danger levels
+  - Robot control

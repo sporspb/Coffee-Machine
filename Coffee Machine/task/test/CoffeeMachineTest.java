@@ -14,7 +14,6 @@ class TestClue {
     int cups;
     int money;
     String feedback;
-
     TestClue(int w, int m, int b, int c, int mo, String feedback) {
         water = w;
         milk = m;
